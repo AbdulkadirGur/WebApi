@@ -1,3 +1,8 @@
+using Business.Abstracts;
+using Business.Concretes;
+using DataAccess.Abstracts;
+using DataAccess.Concretes;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<IBrandServices,BrandManager>();
+builder.Services.AddSingleton<IBrandDal,BrandDal>();
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,6 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.Dtos.Requests;
 using Business.Dtos.Responses;
+using DataAccess.Abstracts;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
-    internal class BrandManager : IBrandServices
+    public class BrandManager : IBrandServices
     {
-        private readonly IBrandServices _brandDal;
+        private readonly IBrandDal _brandDal;
 
-        public BrandManager(IBrandServices brandDal)
+        public BrandManager(IBrandDal brandDal)
         {
             _brandDal = brandDal;
         }
@@ -39,9 +40,28 @@ namespace Business.Concretes
             return createdBrandResponse;
         }
 
-        public List<Brand> GetAll()
+        
+
+       
+
+        List<GetAllBrandResponse> IBrandServices.GetAll()
         {
-            throw new NotImplementedException();
+            List<Brand> brands = _brandDal.GetAll();
+
+            List<GetAllBrandResponse> getAllBrandResponses = new List<GetAllBrandResponse>();
+
+            foreach (var brand in brands)
+            {
+                GetAllBrandResponse getAllBrandResponse = new GetAllBrandResponse();
+
+                getAllBrandResponse.Name = brand.Name;
+                getAllBrandResponse.Id = brand.Id;
+                getAllBrandResponse.CreatedDate = brand.CreatedDate;
+
+                getAllBrandResponses.Add(getAllBrandResponse);
+            }
+
+            return getAllBrandResponses;
         }
     }
 }

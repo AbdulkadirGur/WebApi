@@ -13,7 +13,9 @@ namespace Business.Abstracts
     {
         CreatedBrandResponse Add(CreateBrandRequest createBrandRequest);
 
-        List <Brand> GetAll();
+        List <GetAllBrandResponse> GetAll();
 
     }
+
+    // responses and request
 }

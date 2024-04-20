@@ -15,19 +15,19 @@ namespace DataAccess.Concretes
         public BrandDal()
         {
             _brands = new List<Brand>();
-            _brands.AddCnew Brand { Id = 1, Name = "BMW", CreatedDate = DateTime.Now});
+            _brands.Add(new Brand { Id = 1, Name = "BMW", CreatedDate = DateTime.Now});
             _brands.Add(new Brand { Id = 2, Name = "Mercedes", CreatedDate = DateTime.Now });
             _brands.Add(new Brand { Id = 3, Name = "Alfa Romeo", CreatedDate = DateTime.Now });
         }
 
         public void Add(Brand brand)
         {
-            throw new NotImplementedException();
+            _brands.Add(brand);
         }
 
         public List<Brand> GetAll()
         {
-            throw new NotImplementedException();
+            return _brands;
         }
     }
 }
